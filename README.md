@@ -139,7 +139,7 @@ Para domínio próprio, adicionar em `Settings → Pages → Custom domain` e co
 ```
 ICONS – Instituto Constituição Aberta. PROJUS: Projeto Justiça Aberta.
 Cartografia do Contencioso Constitucional Brasileiro (1988–2026).
-Coord. Damares Medina Coelho. Brasília: ICONS, 2016–2026.
+Coord. Damares Medina. Brasília: ICONS, 2016–2026.
 Disponível em: https://icons.github.io/projus
 ```
 
