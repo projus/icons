@@ -1,7 +1,7 @@
 # PROJUS — Projeto Justiça Aberta
 
 **Instituto Constituição Aberta – ICONS**  
-Coord. Dra. Damares Medina Coelho · [Lattes](http://lattes.cnpq.br/1721292294070477)
+Coord. Damares Medina · [Lattes](http://lattes.cnpq.br/1721292294070477)
 
 > *"O Supremo, porém, que admiro e exalto (...) concebido como o idearam os fundadores do regime federativo, como cúpula e constituinte permanente."*  
 > — Min. Aliomar Baleeiro, 1968
