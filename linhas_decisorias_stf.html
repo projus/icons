@@ -268,31 +268,8 @@ body{font-family:var(--ff-b);background:var(--paper3);color:var(--ink);height:10
 .hm-sort-btn.active{background:var(--navy);color:var(--gold2);border-color:var(--navy)}
 .hm-filter{font-family:var(--ff-m);font-size:9px;padding:3px 8px;border:1px solid var(--border2);border-radius:4px;background:var(--paper);color:var(--ink);margin-left:auto}
 
-/* ── PLACAS TECTÔNICAS ── */
-.spine-wrap{background:#0d1829;border-bottom:2px solid rgba(212,160,23,.2);overflow:hidden;transition:max-height .35s ease,padding .35s ease;max-height:210px}
-.spine-wrap.collapsed{max-height:0;padding:0!important}
-.spine-inner{padding:.75rem 1.25rem .6rem}
-.spine-topbar{display:flex;align-items:center;gap:.6rem;margin-bottom:.5rem;flex-wrap:wrap}
-.spine-title{font-family:var(--ff-m);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,240,232,.35)}
-.spine-toggles{display:flex;gap:3px;margin-left:auto}
-.spine-btn{font-family:var(--ff-m);font-size:8px;padding:2px 8px;background:rgba(255,255,255,.06);border:1px solid rgba(245,240,232,.12);color:rgba(245,240,232,.4);border-radius:3px;cursor:pointer;transition:all .12s;letter-spacing:.03em}
-.spine-btn.active{background:rgba(212,160,23,.18);border-color:rgba(212,160,23,.45);color:#d4a017}
-.spine-btn:hover:not(.active){color:rgba(245,240,232,.75);background:rgba(255,255,255,.1)}
-.spine-collapse{font-family:var(--ff-m);font-size:9px;color:rgba(245,240,232,.25);background:none;border:none;cursor:pointer;padding:0 0 0 .5rem;transition:color .12s}
-.spine-collapse:hover{color:rgba(245,240,232,.65)}
-.spine-chart-wrap{position:relative;height:100px;width:100%;cursor:crosshair}
-.spine-chart-wrap canvas{display:block;width:100%!important;height:100px!important}
-.spine-leg{display:flex;gap:0;margin-top:.5rem;flex-wrap:wrap}
-.spine-leg-item{display:flex;align-items:center;gap:4px;font-family:var(--ff-m);font-size:8px;color:rgba(245,240,232,.35);padding:2px 8px 2px 0;letter-spacing:.03em;white-space:nowrap}
-.spine-leg-dot{width:7px;height:7px;border-radius:1px;flex-shrink:0}
-.spine-tt{position:absolute;background:#0a1020;border:1px solid rgba(212,160,23,.3);border-radius:6px;padding:8px 11px;pointer-events:none;display:none;z-index:20;min-width:195px;max-width:250px}
-.spine-tt-art{font-size:12px;font-weight:500;color:#d4a017;margin-bottom:1px;font-family:var(--ff-m)}
-.spine-tt-blk{font-size:8px;color:rgba(245,240,232,.35);letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
-.spine-tt-cf{font-size:10px;color:rgba(245,240,232,.65);line-height:1.5;margin-bottom:5px}
-.spine-tt-row{display:flex;gap:12px}
-.spine-tt-stat .v{font-size:13px;font-weight:500;color:#f5f0e8;font-family:var(--ff-m)}
-.spine-tt-stat .l{font-size:8px;color:rgba(245,240,232,.3);letter-spacing:.04em}
-.spine-tooltip strong{color:#d4a017;display:block;font-size:10px;margin-bottom:1px}
+
+
 
 /* ── BLOCK PANEL ── */
 .blk-panel{display:none;background:#0a1522;border-bottom:1px solid rgba(212,160,23,.15);padding:.75rem 1.25rem;animation:bpIn .18s ease}
@@ -312,6 +289,58 @@ body{font-family:var(--ff-b);background:var(--paper3);color:var(--ink);height:10
 .blk-panel-chart canvas{width:100%!important;height:70px!important}
 .blk-close{font-family:var(--ff-m);font-size:9px;color:rgba(245,240,232,.25);background:none;border:none;cursor:pointer;padding:0;margin-left:auto;align-self:flex-start;transition:color .1s}
 .blk-close:hover{color:rgba(245,240,232,.7)}
+
+/* ── PLACAS TECTÔNICAS ── */
+.spine-wrap{background:#0d1829;border-bottom:2px solid rgba(212,160,23,.2);overflow:hidden;transition:max-height .35s ease;max-height:210px}
+.spine-wrap.collapsed{max-height:0}
+.spine-inner{padding:.75rem 1.25rem .6rem}
+.spine-topbar{display:flex;align-items:center;gap:.6rem;margin-bottom:.5rem;flex-wrap:wrap}
+.spine-title{font-family:var(--ff-m);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,240,232,.35)}
+.spine-toggles{display:flex;gap:3px;margin-left:auto}
+.spine-btn{font-family:var(--ff-m);font-size:8px;padding:2px 8px;background:rgba(255,255,255,.06);border:1px solid rgba(245,240,232,.12);color:rgba(245,240,232,.4);border-radius:3px;cursor:pointer;transition:all .12s}
+.spine-btn.active{background:rgba(212,160,23,.18);border-color:rgba(212,160,23,.45);color:#d4a017}
+.spine-btn:hover:not(.active){color:rgba(245,240,232,.75)}
+.spine-collapse-btn{font-family:var(--ff-m);font-size:9px;color:rgba(245,240,232,.25);background:none;border:none;cursor:pointer;padding:0 0 0 .5rem;transition:color .12s}
+.spine-collapse-btn:hover{color:rgba(245,240,232,.65)}
+.spine-cw{position:relative;height:100px;width:100%;cursor:crosshair}
+.spine-cw canvas{display:block;width:100%!important;height:100px!important}
+.spine-leg{display:flex;gap:0;margin-top:.5rem;flex-wrap:wrap}
+.spine-leg-item{display:flex;align-items:center;gap:4px;font-family:var(--ff-m);font-size:8px;color:rgba(245,240,232,.35);padding:2px 8px 2px 0;white-space:nowrap}
+.spine-leg-dot{width:7px;height:7px;border-radius:1px;flex-shrink:0}
+.sp-tt{position:absolute;background:#0a1020;border:1px solid rgba(212,160,23,.3);border-radius:6px;padding:8px 11px;pointer-events:none;display:none;z-index:20;min-width:195px;max-width:250px}
+.sp-tt-art{font-size:12px;font-weight:500;color:#d4a017;margin-bottom:1px;font-family:var(--ff-m)}
+.sp-tt-blk{font-size:8px;color:rgba(245,240,232,.35);letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
+.sp-tt-cf{font-size:10px;color:rgba(245,240,232,.65);line-height:1.5;margin-bottom:5px}
+.sp-tt-row{display:flex;gap:12px}
+.sp-tt-stat .v{font-size:13px;font-weight:500;color:#f5f0e8;font-family:var(--ff-m)}
+.sp-tt-stat .l{font-size:8px;color:rgba(245,240,232,.3);letter-spacing:.04em}
+
+/* ── PLACAS TECTÔNICAS ── */
+.spine-wrap{background:transparent;border-bottom:0.5px solid var(--color-border-tertiary);overflow:hidden;transition:max-height .35s ease;max-height:400px}
+.spine-wrap.collapsed{max-height:0}
+.spine-inner{padding:.75rem 0 .6rem}
+.spine-topbar{display:flex;align-items:center;gap:.6rem;margin-bottom:.75rem;flex-wrap:wrap}
+.spine-title{font-family:var(--ff-m);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted2)}
+.spine-toggles{display:flex;gap:3px;margin-left:auto}
+.tec-btn{font-size:9px!important;padding:2px 8px!important;border:0.5px solid var(--border)!important;background:transparent!important;color:var(--muted)!important;border-radius:3px!important;cursor:pointer;transition:all .12s;letter-spacing:.03em;font-family:var(--ff-m)!important;font-weight:400!important;line-height:1.4!important;min-width:unset!important;height:auto!important}
+.tec-btn.on{background:var(--navy)!important;color:var(--gold)!important;border-color:var(--navy)!important}
+.tec-btn:hover:not(.on){background:var(--paper2)!important}
+.spine-collapse-btn{font-family:var(--ff-m);font-size:9px;color:var(--muted2);background:none;border:none;cursor:pointer;padding:0 0 0 .5rem;transition:color .12s}
+.spine-collapse-btn:hover{color:var(--ink)}
+.tec-canvas-wrap{position:relative;height:220px;width:100%;cursor:crosshair}
+.tec-canvas-wrap canvas{display:block;width:100%!important;height:220px!important}
+.tec-tt{position:absolute;background:#0d1829;border:1px solid rgba(212,160,23,.35);border-radius:6px;padding:8px 11px;pointer-events:none;display:none;z-index:20;min-width:200px;max-width:260px}
+.tec-tt-art{font-size:12px;font-weight:500;color:#d4a017;margin-bottom:2px;font-family:var(--ff-m)}
+.tec-tt-block{font-size:9px;color:rgba(245,240,232,.4);letter-spacing:.06em;text-transform:uppercase;margin-bottom:5px}
+.tec-tt-cf{font-size:10px;color:rgba(245,240,232,.7);line-height:1.5;margin-bottom:6px}
+.tec-tt-row{display:flex;gap:14px}
+.tec-tt-stat .v{font-size:13px;font-weight:500;color:#f5f0e8;font-family:var(--ff-m)}
+.tec-tt-stat .l{font-size:9px;color:rgba(245,240,232,.35);letter-spacing:.04em}
+.tec-legend{display:flex;gap:0;margin-top:.6rem;flex-wrap:wrap;border:0.5px solid var(--border);border-radius:6px;overflow:hidden}
+.tec-leg-item{display:flex;align-items:center;gap:6px;padding:5px 10px;font-size:9px;color:var(--muted);flex:1;min-width:90px;letter-spacing:.03em;border-right:0.5px solid var(--border);cursor:default;transition:background .1s;font-family:var(--ff-m)}
+.tec-leg-item:last-child{border-right:none}
+.tec-leg-item:hover{background:var(--paper2)}
+.tec-leg-dot{width:8px;height:8px;border-radius:1px;flex-shrink:0}
 </style>
 </head>
 <body>
@@ -332,31 +361,30 @@ body{font-family:var(--ff-b);background:var(--paper3);color:var(--ink);height:10
     <div class="spine-topbar">
       <span class="spine-title">Placas tectônicas da CF/88 · tensão decisória por artigo</span>
       <div class="spine-toggles">
-        <button class="spine-btn active" data-spmode="log" onclick="setSpMode(this,'log')">log</button>
-        <button class="spine-btn" data-spmode="linear" onclick="setSpMode(this,'linear')">linear</button>
-        <button class="spine-btn active" data-spcol="block" onclick="setSpCol(this,'block')">blocos</button>
-        <button class="spine-btn" data-spcol="instab" onclick="setSpCol(this,'instab')">instabilidade</button>
-        <button class="spine-btn" data-spcol="vol" onclick="setSpCol(this,'vol')">volume</button>
+        <button class="tec-btn on" data-spmode="log" onclick="spSetMode(this,'log')">log</button>
+        <button class="tec-btn" data-spmode="linear" onclick="spSetMode(this,'linear')">linear</button>
+        <button class="tec-btn on" data-spcol="block" onclick="spSetCol(this,'block')">por bloco</button>
+        <button class="tec-btn" data-spcol="instab" onclick="spSetCol(this,'instab')">por instabilidade</button>
+        <button class="tec-btn" data-spcol="vol" onclick="spSetCol(this,'vol')">por volume</button>
       </div>
-      <button class="spine-collapse" onclick="toggleSpine()" id="spineColBtn">▲ recolher</button>
+      <button class="spine-collapse-btn" onclick="spToggle()" id="spColBtn">▲ recolher</button>
     </div>
-    <div class="spine-chart-wrap">
-      <canvas id="spineCanvas"></canvas>
-      <div class="spine-tt" id="spineTT">
-        <div class="spine-tt-art" id="stt-art"></div>
-        <div class="spine-tt-blk" id="stt-blk"></div>
-        <div class="spine-tt-cf" id="stt-cf"></div>
-        <div class="spine-tt-row">
-          <div class="spine-tt-stat"><div class="v" id="stt-dec"></div><div class="l">decisões</div></div>
-          <div class="spine-tt-stat"><div class="v" id="stt-idi"></div><div class="l">IDI</div></div>
-          <div class="spine-tt-stat"><div class="v" id="stt-rev"></div><div class="l">reversões</div></div>
+    <div class="tec-canvas-wrap">
+      <canvas id="tecCanvas"></canvas>
+      <div class="tec-tt" id="tecTT">
+        <div class="tec-tt-art" id="tec-art"></div>
+        <div class="tec-tt-block" id="tec-blk"></div>
+        <div class="tec-tt-cf" id="tec-cf"></div>
+        <div class="tec-tt-row">
+          <div class="tec-tt-stat"><div class="v" id="tec-dec"></div><div class="l">decisões</div></div>
+          <div class="tec-tt-stat"><div class="v" id="tec-idi"></div><div class="l">IDI</div></div>
+          <div class="tec-tt-stat"><div class="v" id="tec-rev"></div><div class="l">reversões</div></div>
         </div>
       </div>
     </div>
-    <div class="spine-leg" id="spineLeg"></div>
+    <div class="tec-legend" id="tecLegend"></div>
   </div>
 </div>
-
 <div class="workspace">
 
   <aside class="sidebar">
@@ -428,8 +456,8 @@ body{font-family:var(--ff-b);background:var(--paper3);color:var(--ink);height:10
 </div>
 
 <script>
-let A=[],SP=[];
-fetch('data.json').then(r=>r.json()).then(d=>{A=d.articles||d;HM=d.heatmap||null;SP=d.spine||[];rSide();buildSpine();const first=A.find(a=>a.id==='Art. 1º')||gf()[0];if(first)open_(first.id);}).catch(e=>console.error('Failed to load data:',e));
+let A=[];
+fetch('data.json').then(r=>r.json()).then(d=>{A=d.articles||d;HM=d.heatmap||null;window.combined=d;rSide();buildSpine();const first=A.find(a=>a.id==='Art. 1º')||gf()[0];if(first)open_(first.id);}).catch(e=>console.error('Failed to load data:',e));
 
 const RC={};const PAL=['#1a2744','#c0392b','#0d5c5c','#7a5a07','#4a3080','#2d6a2d','#5c3a1a','#1a5c3a','#3a1a5c','#c0700b','#5c4a1a','#243058','#6b2d1a','#1a4a3a','#4a1a3a'];
 let pi=0;
@@ -451,8 +479,6 @@ function gf(){
   else if(sort==='span') d.sort((a,b)=>b.span-a.span);
   else d.sort((a,b)=>{const na=parseInt(a.id.match(/\d+/)?.[0]||0),nb=parseInt(b.id.match(/\d+/)?.[0]||0);return na-nb;});
   return d;
-}
-
 
 function aidx(){return gf().findIndex(a=>a.id===actId);}
 
@@ -667,7 +693,6 @@ document.addEventListener('keydown',ev=>{
   else if(ev.key==='Enter'&&t==='INPUT'){document.getElementById('si').blur();const d=gf();if(d.length)open_(d[0].id);}
 });
 
-
 // ── HEATMAP ──
 let HM = null;
 let hmSort = 'score';
@@ -765,34 +790,8 @@ document.querySelectorAll('.hm-sort-btn').forEach(b => b.addEventListener('click
   renderHeatmap();
 }));
 
-
 // ── PLACAS TECTÔNICAS ──
-const SP_BLOCOS=[
-  {id:'fund', label:'Princ. Fundamentais', start:1,   end:4,   light:'#4a6aaa'},
-  {id:'dir',  label:'Direitos e Garantias',start:5,   end:17,  light:'#c0392b'},
-  {id:'org',  label:'Organização do Estado',start:18, end:43,  light:'#27ae60'},
-  {id:'leg',  label:'Poder Legislativo',   start:44,  end:75,  light:'#8e44ad'},
-  {id:'exe',  label:'Poder Executivo',     start:76,  end:91,  light:'#e67e22'},
-  {id:'jud',  label:'Poder Judiciário',    start:92,  end:135, light:'#2980b9'},
-  {id:'def',  label:'Defesa do Estado',    start:136, end:144, light:'#795548'},
-  {id:'fin',  label:'Tributação e Finanças',start:145,end:169, light:'#1abc9c'},
-  {id:'eco',  label:'Ordem Econômica',     start:170, end:192, light:'#9b59b6'},
-  {id:'soc',  label:'Ordem Social',        start:193, end:232, light:'#e74c3c'},
-  {id:'disp', label:'Disposições Gerais',  start:233, end:250, light:'#607d8b'},
-];
 
-function spGetBlock(n){return SP_BLOCOS.find(b=>n>=b.start&&n<=b.end)||SP_BLOCOS[SP_BLOCOS.length-1];}
-
-let spMode='log', spCol='block', spChart=null, activeBlock=null;
-
-function spVal(total){return spMode==='log'?Math.log(total+1):total;}
-
-function spBarCol(a){
-  if(spCol==='block'){
-    if(a.blockColor) return a.blockColor;
-    const n=parseInt(a.id.match(/\d+/)?.[0]||0);
-    return spGetBlock(n).light;
-  }
   if(spCol==='instab'){
     if(a.tier==='high') return '#c0392b';
     if(a.tier==='moderate') return '#d4a017';
@@ -802,99 +801,116 @@ function spBarCol(a){
   return `rgb(${Math.round(60+t*140)},${Math.round(80+t*120)},${Math.round(180-t*100)})`;
 }
 
-function buildSpine(){
-  const sorted=SP.length?SP:[...A].sort((a,b)=>parseInt(a.id.match(/\d+/)?.[0]||0)-parseInt(b.id.match(/\d+/)?.[0]||0));
-  if(!sorted.length) return;
-  const vals=sorted.map(a=>spVal(a.total));
-  const cols=sorted.map(a=>spBarCol(a));
-  const seismic=sorted.map((a,i)=>{const r=typeof a.reversals==='number'?a.reversals:(a.reversals?.length||0);return r>0?{x:i,y:spVal(a.total)+.05}:null;}).filter(Boolean);
+// ── BLOCK PANEL ──
 
-  if(spChart){spChart.destroy();spChart=null;}
-  spChart=new Chart(document.getElementById('spineCanvas'),{
+
+
+// ── PLACAS TECTÔNICAS ──
+const TEC_BLOCOS=[
+  {id:'fund', label:'Princípios Fundamentais',start:1,  end:4,  light:'#4a6aaa'},
+  {id:'dir',  label:'Direitos e Garantias',   start:5,  end:17, light:'#c0392b'},
+  {id:'org',  label:'Organização do Estado',  start:18, end:43, light:'#27ae60'},
+  {id:'leg',  label:'Poder Legislativo',      start:44, end:75, light:'#8e44ad'},
+  {id:'exe',  label:'Poder Executivo',        start:76, end:91, light:'#e67e22'},
+  {id:'jud',  label:'Poder Judiciário',       start:92, end:135,light:'#2980b9'},
+  {id:'def',  label:'Defesa do Estado',       start:136,end:144,light:'#795548'},
+  {id:'fin',  label:'Tributação e Finanças',  start:145,end:169,light:'#1abc9c'},
+  {id:'eco',  label:'Ordem Econômica',        start:170,end:192,light:'#9b59b6'},
+  {id:'soc',  label:'Ordem Social',           start:193,end:232,light:'#e74c3c'},
+  {id:'disp', label:'Disposições Gerais',     start:233,end:250,light:'#607d8b'},
+];
+function tecBlk(n){return TEC_BLOCOS.find(b=>n>=b.start&&n<=b.end)||TEC_BLOCOS[TEC_BLOCOS.length-1];}
+
+
+
+function spBarCol(a){
+  if(spCol==='block'){
+    const n=parseInt(a.id.match(/\d+/)?.[0]||0);
+    return a.blockColor||tecBlk(n).light;
+  }
+  if(spCol==='instab') return a.tier==='high'?'#c0392b':a.tier==='moderate'?'#d4a017':'#4a7fa8';
+  const t=Math.log(a.total+1)/Math.log(1662);
+  return `rgb(${Math.round(60+t*140)},${Math.round(80+t*120)},${Math.round(180-t*100)})`;
+}
+
+function buildSpine(){
+  const src=(window.combined&&window.combined.spine)||[...A].sort((a,b)=>parseInt(a.id.match(/\d+/)?.[0]||0)-parseInt(b.id.match(/\d+/)?.[0]||0));
+  if(!src.length) return;
+  const seismic=src.map((a,i)=>{const r=typeof a.reversals==='number'?a.reversals:(a.reversals?.length||0);return r>0?{x:i,y:spV(a.total)+.08}:null;}).filter(Boolean);
+  if(tecChart){tecChart.destroy();tecChart=null;}
+  tecChart=new Chart(document.getElementById('tecCanvas'),{
     type:'bar',
     data:{
-      labels:sorted.map(a=>a.id),
+      labels:src.map(a=>a.id),
       datasets:[
-        {type:'bar',data:vals,backgroundColor:cols,borderWidth:0,borderRadius:3,barPercentage:.88,categoryPercentage:.95},
-        {type:'scatter',data:seismic,backgroundColor:'#ff3333',borderColor:'#ff1111',borderWidth:1,pointRadius:5,pointStyle:'triangle',showLine:false}
+        {type:'bar',data:src.map(a=>spV(a.total)),backgroundColor:src.map(a=>spBarCol(a)),borderWidth:0,borderRadius:3,barPercentage:.88,categoryPercentage:.95},
+        {type:'scatter',data:seismic,backgroundColor:'#ff4444',borderColor:'#ff1111',borderWidth:1,pointRadius:5,pointStyle:'triangle',showLine:false}
       ]
     },
     options:{
-      responsive:false,maintainAspectRatio:false,
-      animation:{duration:220},
+      responsive:false,maintainAspectRatio:false,animation:{duration:250},
       plugins:{legend:{display:false},tooltip:{enabled:false}},
       scales:{
         x:{type:'category',ticks:{display:false},grid:{display:false},border:{display:false}},
         y:{min:0,ticks:{display:false},grid:{display:false},border:{display:false}}
       },
       onHover:(evt,els)=>{
-        const tt=document.getElementById('spineTT');
+        const tt=document.getElementById('tecTT');
         if(!els.length){tt.style.display='none';return;}
         const di=els[0].index;
-        if(di===undefined||di>=sorted.length){tt.style.display='none';return;}
-        const a=sorted[di];
-        document.getElementById('stt-art').textContent=a.id;
-        document.getElementById('stt-blk').textContent=blk.label+' · arts. '+blk.start+'–'+blk.end;
-        document.getElementById('stt-cf').textContent=(a.cf_text||a.full||'').substring(0,60)+'…';
-        document.getElementById('stt-dec').textContent=a.total.toLocaleString('pt-BR');
-        document.getElementById('stt-idi').textContent=a.score;
-        const nrev=typeof a.reversals==='number'?a.reversals:(a.reversals?.length||0);
-        document.getElementById('stt-rev').textContent=nrev>0?'⚠ '+nrev:'—';
+        if(di===undefined||di>=src.length){tt.style.display='none';return;}
+        const a=src[di];
+        const n=parseInt(a.id.match(/\d+/)?.[0]||0);
+        const b=tecBlk(n);
+        document.getElementById('tec-art').textContent=a.id;
+        document.getElementById('tec-blk').textContent=(a.blockLabel||b.label)+' · arts. '+b.start+'–'+b.end;
+        document.getElementById('tec-cf').textContent=(a.cf||a.cf_text||a.full||'').substring(0,60)+'…';
+        document.getElementById('tec-dec').textContent=a.total.toLocaleString('pt-BR');
+        document.getElementById('tec-idi').textContent=a.score;
+        const nr=typeof a.reversals==='number'?a.reversals:(a.reversals?.length||0);
+        document.getElementById('tec-rev').textContent=nr>0?'⚠ '+nr:'—';
         const wrap=evt.chart.canvas.parentElement;
         const wRect=wrap.getBoundingClientRect();
-        let x=evt.clientX-wRect.left+10,y=evt.clientY-wRect.top-65;
-        if(x+260>wRect.width) x=evt.clientX-wRect.left-265;
+        let x=evt.clientX-wRect.left+10,y=evt.clientY-wRect.top-60;
+        if(x+270>wRect.width) x=evt.clientX-wRect.left-280;
         if(y<0) y=4;
         tt.style.left=x+'px';tt.style.top=y+'px';tt.style.display='block';
       },
       onClick:(evt,els)=>{
         if(!els.length) return;
-        const a=sorted[els[0].index];
+        const a=src[els[0].index];
         if(!a) return;
-        open_(a.id);const hv=document.getElementById('hmView');if(hv&&hv.style.display!=='none')toggleView();
+        open_(a.id);
+        const hv=document.getElementById('hmView');
+        if(hv&&hv.style.display!=='none') toggleView();
       }
     }
   });
-
-  // Legend
-  const leg=document.getElementById('spineLeg');
+  const leg=document.getElementById('tecLegend');
   if(spCol==='block'){
-    leg.innerHTML=SP_BLOCOS.map(b=>`<div class="spine-leg-item"><div class="spine-leg-dot" style="background:${b.light}"></div>${b.label}</div>`).join('');
+    leg.innerHTML=TEC_BLOCOS.map(b=>`<div class="tec-leg-item"><div class="tec-leg-dot" style="background:${b.light}"></div>${b.label}</div>`).join('');
   } else {
-    leg.innerHTML=[
-      {c:'#c0392b',l:'Alta instabilidade'},
-      {c:'#d4a017',l:'Moderada'},
-      {c:'#4a7fa8',l:'Estável'},
-      {c:'#ff3333',l:'▲ sismo (reversão A→B→A)'},
-    ].map(x=>`<div class="spine-leg-item"><div class="spine-leg-dot" style="background:${x.c}"></div>${x.l}</div>`).join('');
+    leg.innerHTML=[{c:'#c0392b',l:'Alta instabilidade'},{c:'#d4a017',l:'Moderada'},{c:'#4a7fa8',l:'Estável'},{c:'#ff4444',l:'▲ sismo decisório'}]
+      .map(x=>`<div class="tec-leg-item"><div class="tec-leg-dot" style="background:${x.c}"></div>${x.l}</div>`).join('');
   }
 }
 
-function setSpMode(btn,m){
+function spSetMode(btn,m){
   spMode=m;
-  document.querySelectorAll('[data-spmode]').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  buildSpine();
+  document.querySelectorAll('[data-spmode]').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');buildSpine();
 }
-function setSpCol(btn,c){
+function spSetCol(btn,c){
   spCol=c;
-  document.querySelectorAll('[data-spcol]').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  buildSpine();
+  document.querySelectorAll('[data-spcol]').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');buildSpine();
 }
-function toggleSpine(){
-  const wrap=document.getElementById('spineWrap');
-  const btn=document.getElementById('spineColBtn');
-  wrap.classList.toggle('collapsed');
-  btn.textContent=wrap.classList.contains('collapsed')?'▼ expandir':'▲ recolher';
+function spToggle(){
+  const w=document.getElementById('spineWrap');
+  const b=document.getElementById('spColBtn');
+  w.classList.toggle('collapsed');
+  b.textContent=w.classList.contains('collapsed')?'▼ expandir':'▲ recolher';
 }
-
-
-// ── BLOCK PANEL ──
-let blkChartInst=null;
-
-
-
 </script>
 </body>
 </html>
