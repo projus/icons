@@ -147,7 +147,18 @@ Disponível em: https://icons.github.io/projus
 
 ## Licença
 
-Este projeto é de interesse público. Os dados são derivados de documentos públicos do Supremo Tribunal Federal. O código de visualização é de livre uso com atribuição ao ICONS.
+[![CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
+
+Este trabalho está licenciado sob a **Creative Commons Atribuição 4.0 Internacional (CC BY 4.0)**.
+
+Você tem o direito de:
+- **Compartilhar** — copiar e redistribuir o material em qualquer meio ou formato
+- **Adaptar** — remixar, transformar e criar a partir do material para qualquer fim, inclusive comercial
+
+Sob as seguintes condições:
+- **Atribuição** — você deve dar o crédito apropriado a **Damares Medina / Instituto Constituição Aberta – ICONS**, indicar se foram feitas alterações e fornecer um link para a licença
+
+Texto completo da licença: https://creativecommons.org/licenses/by/4.0/legalcode.pt
 
 ---
 
