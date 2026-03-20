@@ -267,6 +267,23 @@ body{font-family:var(--ff-b);background:var(--paper3);color:var(--ink);height:10
 .hm-sort-btn{font-family:var(--ff-m);font-size:9px;padding:3px 8px;border:1px solid var(--border);background:transparent;color:var(--muted);border-radius:4px;cursor:pointer;transition:all .12s}
 .hm-sort-btn.active{background:var(--navy);color:var(--gold2);border-color:var(--navy)}
 .hm-filter{font-family:var(--ff-m);font-size:9px;padding:3px 8px;border:1px solid var(--border2);border-radius:4px;background:var(--paper);color:var(--ink);margin-left:auto}
+
+/* ── ESPINHA DORSAL ── */
+.spine-wrap{background:var(--navy);border-bottom:2px solid rgba(212,160,23,.25);overflow:hidden;transition:max-height .35s ease,padding .35s ease;max-height:180px}
+.spine-wrap.collapsed{max-height:0;padding:0!important}
+.spine-inner{padding:.75rem 1.25rem .5rem}
+.spine-topbar{display:flex;align-items:center;gap:.75rem;margin-bottom:.5rem}
+.spine-title{font-family:var(--ff-m);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,240,232,.45)}
+.spine-toggles{display:flex;gap:4px;margin-left:auto}
+.spine-btn{font-family:var(--ff-m);font-size:8px;padding:2px 7px;background:rgba(255,255,255,.07);border:1px solid rgba(245,240,232,.15);color:rgba(245,240,232,.45);border-radius:3px;cursor:pointer;transition:all .12s}
+.spine-btn.active{background:rgba(212,160,23,.2);border-color:rgba(212,160,23,.4);color:#d4a017}
+.spine-btn:hover:not(.active){color:rgba(245,240,232,.8)}
+.spine-collapse{font-family:var(--ff-m);font-size:9px;color:rgba(245,240,232,.3);background:none;border:none;cursor:pointer;padding:0 0 0 .75rem;margin-left:.25rem;transition:color .12s}
+.spine-collapse:hover{color:rgba(245,240,232,.7)}
+.spine-chart-wrap{position:relative;height:90px;width:100%;cursor:crosshair}
+.spine-chart-wrap canvas{display:block;width:100%!important;height:90px!important}
+.spine-tooltip{position:absolute;background:rgba(10,16,32,.95);border:1px solid rgba(212,160,23,.3);border-radius:5px;padding:5px 8px;font-family:var(--ff-m);font-size:9px;color:rgba(245,240,232,.9);pointer-events:none;display:none;z-index:20;white-space:nowrap;max-width:220px}
+.spine-tooltip strong{color:#d4a017;display:block;font-size:10px;margin-bottom:1px}
 </style>
 </head>
 <body>
@@ -282,6 +299,25 @@ body{font-family:var(--ff-b);background:var(--paper3);color:var(--ink);height:10
   </div>
 </header>
 
+<div class="spine-wrap" id="spineWrap">
+  <div class="spine-inner">
+    <div class="spine-topbar">
+      <span class="spine-title">Espinha dorsal da CF/88 · saliência decisória por artigo</span>
+      <div class="spine-toggles">
+        <button class="spine-btn active" data-spmode="log" onclick="setSpMode(this,'log')">log</button>
+        <button class="spine-btn" data-spmode="linear" onclick="setSpMode(this,'linear')">linear</button>
+        <button class="spine-btn active" data-spcolor="instab" onclick="setSpColor(this,'instab')">instabilidade</button>
+        <button class="spine-btn" data-spcolor="volume" onclick="setSpColor(this,'volume')">volume</button>
+      </div>
+      <button class="spine-collapse" onclick="toggleSpine()" id="spineColBtn">▲ recolher</button>
+    </div>
+    <div class="spine-chart-wrap">
+      <canvas id="spineCanvas"></canvas>
+      <div class="spine-tooltip" id="spineTT"></div>
+    </div>
+  </div>
+</div>
+
 <div class="workspace">
 
   <aside class="sidebar">
@@ -292,10 +328,11 @@ body{font-family:var(--ff-b);background:var(--paper3);color:var(--ink);height:10
         <button class="sx" id="sx" onclick="cls()">×</button>
       </div>
       <div class="sort-row">
-        <button class="sbt active" data-sort="score">Instabilidade</button>
-        <button class="sbt" data-sort="total">Volume</button>
-        <button class="sbt" data-sort="span">Amplitude</button>
-      </div>
+      <button class="sbt active" data-sort="id">Artigo CF</button>
+      <button class="sbt" data-sort="score">Instabilidade</button>
+      <button class="sbt" data-sort="total">Volume</button>
+      <button class="sbt" data-sort="span">Amplitude</button>
+    </div>
       <div class="cnt" id="cnt">40 artigos</div>
     </div>
     <div class="art-list" id="al"></div>
@@ -353,7 +390,7 @@ body{font-family:var(--ff-b);background:var(--paper3);color:var(--ink);height:10
 
 <script>
 let A=[];
-fetch('data.json').then(r=>r.json()).then(d=>{A=d.articles||d;HM=d.heatmap||null;rSide();if(A.length)open_(A[0].id);}).catch(e=>console.error('Failed to load data:',e));
+fetch('data.json').then(r=>r.json()).then(d=>{A=d.articles||d;HM=d.heatmap||null;rSide();buildSpine();const first=A.find(a=>a.id==='Art. 1º')||gf()[0];if(first)open_(first.id);}).catch(e=>console.error('Failed to load data:',e));
 
 const RC={};const PAL=['#1a2744','#c0392b','#0d5c5c','#7a5a07','#4a3080','#2d6a2d','#5c3a1a','#1a5c3a','#3a1a5c','#c0700b','#5c4a1a','#243058','#6b2d1a','#1a4a3a','#4a1a3a'];
 let pi=0;
@@ -363,7 +400,7 @@ function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace
 const TC={critical:'crítica',high:'alta',moderate:'moderada',stable:'estável'};
 const TL={critical:'Instabilidade crítica',high:'Instabilidade alta',moderate:'Instabilidade moderada',stable:'Linha estável'};
 
-let sort='score',srch='',actId=null;
+let sort='id',srch='',actId=null;
 const chts={};
 function kc(id){if(chts[id]){chts[id].destroy();delete chts[id];}}
 
@@ -686,6 +723,96 @@ document.querySelectorAll('.hm-sort-btn').forEach(b => b.addEventListener('click
   b.classList.add('active');
   renderHeatmap();
 }));
+
+
+// ── ESPINHA DORSAL ──
+let spMode='log', spColor='instab', spChart=null;
+
+const SPINE_TIER_COLOR={high:'#c0392b',moderate:'#d4a017',stable:'#4a7fa8'};
+
+function spVal(v){return spMode==='log'?Math.log(v+1):v;}
+
+function spBarColor(d){
+  if(spColor==='instab') return SPINE_TIER_COLOR[d.tier]||'#4a7fa8';
+  const t=Math.log(d.total+1)/Math.log(1662);
+  const r=Math.round(180-t*130);const g=Math.round(200-t*150);const b=Math.round(230-t*140);
+  return `rgb(${r},${g},${b})`;
+}
+
+function buildSpine(){
+  if(!A.length) return;
+  const sorted=[...A].sort((a,b)=>{
+    const na=parseInt(a.id.match(/\d+/)?.[0]||0);
+    const nb=parseInt(b.id.match(/\d+/)?.[0]||0);
+    return na-nb;
+  });
+  const labels=sorted.map(d=>d.id);
+  const vals=sorted.map(d=>spVal(d.total));
+  const colors=sorted.map(d=>spBarColor(d));
+  if(spChart){spChart.destroy();spChart=null;}
+  spChart=new Chart(document.getElementById('spineCanvas'),{
+    type:'bar',
+    data:{
+      labels,
+      datasets:[{
+        data:vals,backgroundColor:colors,borderWidth:0,
+        borderRadius:2,barPercentage:.9,categoryPercentage:.95
+      }]
+    },
+    options:{
+      responsive:false,maintainAspectRatio:false,
+      animation:{duration:300},
+      plugins:{legend:{display:false},tooltip:{enabled:false}},
+      scales:{
+        x:{ticks:{display:false},grid:{display:false},border:{display:false}},
+        y:{ticks:{display:false},grid:{display:false},border:{display:false},min:0}
+      },
+      onHover:(evt,els)=>{
+        const tt=document.getElementById('spineTT');
+        if(!els.length){tt.style.display='none';return;}
+        const d=sorted[els[0].index];
+        const tierLabel={high:'alta instabilidade',moderate:'moderada',stable:'estável'};
+        tt.innerHTML=`<strong>${d.id}</strong>${d.cf_text?d.cf_text.substring(0,55)+'…':''}<br><span style="color:rgba(245,240,232,.5)">IDI ${d.score} · ${d.total.toLocaleString('pt-BR')} dec · ${tierLabel[d.tier]||d.tier}</span>`;
+        const wrap=evt.chart.canvas.parentElement;
+        const wRect=wrap.getBoundingClientRect();
+        let x=evt.clientX-wRect.left+8;
+        let y=evt.clientY-wRect.top-45;
+        if(x+230>wRect.width) x=evt.clientX-wRect.left-240;
+        if(y<0) y=5;
+        tt.style.left=x+'px';tt.style.top=y+'px';tt.style.display='block';
+      },
+      onClick:(evt,els)=>{
+        if(!els.length) return;
+        const d=sorted[els[0].index];
+        open_(d.id);
+        // If heatmap is open, switch back to lines view
+        const hv=document.getElementById('hmView');
+        if(hv&&hv.style.display!=='none') toggleView();
+      }
+    }
+  });
+}
+
+function setSpMode(btn,mode){
+  spMode=mode;
+  document.querySelectorAll('[data-spmode]').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  buildSpine();
+}
+
+function setSpColor(btn,color){
+  spColor=color;
+  document.querySelectorAll('[data-spcolor]').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  buildSpine();
+}
+
+function toggleSpine(){
+  const wrap=document.getElementById('spineWrap');
+  const btn=document.getElementById('spineColBtn');
+  wrap.classList.toggle('collapsed');
+  btn.textContent=wrap.classList.contains('collapsed')?'▼ expandir':'▲ recolher';
+}
 
 </script>
 </body>
