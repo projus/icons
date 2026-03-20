@@ -293,6 +293,25 @@ body{font-family:var(--ff-b);background:var(--paper3);color:var(--ink);height:10
 .spine-tt-stat .v{font-size:13px;font-weight:500;color:#f5f0e8;font-family:var(--ff-m)}
 .spine-tt-stat .l{font-size:8px;color:rgba(245,240,232,.3);letter-spacing:.04em}
 .spine-tooltip strong{color:#d4a017;display:block;font-size:10px;margin-bottom:1px}
+
+/* ── BLOCK PANEL ── */
+.blk-panel{display:none;background:#0a1522;border-bottom:1px solid rgba(212,160,23,.15);padding:.75rem 1.25rem;animation:bpIn .18s ease}
+@keyframes bpIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+.blk-panel.open{display:flex;gap:1.5rem;align-items:flex-start;flex-wrap:wrap}
+.blk-panel-left{min-width:160px}
+.blk-panel-title{font-family:var(--ff-d);font-size:16px;font-weight:900;color:#f5f0e8;margin-bottom:.25rem}
+.blk-panel-stats{display:flex;gap:.75rem;margin-bottom:.6rem;flex-wrap:wrap}
+.blk-stat{text-align:center}
+.blk-stat .v{font-family:var(--ff-m);font-size:14px;font-weight:500;color:#d4a017}
+.blk-stat .l{font-family:var(--ff-m);font-size:8px;color:rgba(245,240,232,.3);letter-spacing:.04em}
+.blk-top3{display:flex;flex-direction:column;gap:3px}
+.blk-top3-item{display:flex;align-items:center;gap:6px;font-family:var(--ff-m);font-size:9px;color:rgba(245,240,232,.6);cursor:pointer;padding:2px 4px;border-radius:3px;transition:background .1s}
+.blk-top3-item:hover{background:rgba(212,160,23,.12);color:#d4a017}
+.blk-top3-badge{font-size:8px;padding:1px 5px;border-radius:2px;font-weight:500}
+.blk-panel-chart{flex:1;min-width:200px;height:70px;position:relative}
+.blk-panel-chart canvas{width:100%!important;height:70px!important}
+.blk-close{font-family:var(--ff-m);font-size:9px;color:rgba(245,240,232,.25);background:none;border:none;cursor:pointer;padding:0;margin-left:auto;align-self:flex-start;transition:color .1s}
+.blk-close:hover{color:rgba(245,240,232,.7)}
 </style>
 </head>
 <body>
@@ -426,12 +445,19 @@ function kc(id){if(chts[id]){chts[id].destroy();delete chts[id];}}
 
 function gf(){
   let d=[...A];
-  if(srch){const s=srch.toLowerCase();d=d.filter(a=>a.id.toLowerCase().includes(s)||a.full.toLowerCase().includes(s));}
+  if(window._blockIds){d=d.filter(a=>window._blockIds.has(a.id));}
+  if(srch.length>1){const s=srch.toLowerCase();d=d.filter(a=>a.id.toLowerCase().includes(s)||(a.cf_text||a.full||'').toLowerCase().includes(s));}
+  if(sort==='score') d.sort((a,b)=>b.score-a.score);
+  else if(sort==='total') d.sort((a,b)=>b.total-a.total);
+  else if(sort==='span') d.sort((a,b)=>b.span-a.span);
+  else d.sort((a,b)=>{const na=parseInt(a.id.match(/\d+/)?.[0]||0),nb=parseInt(b.id.match(/\d+/)?.[0]||0);return na-nb;});
+  return d;
+}
   if(sort==='score')d.sort((a,b)=>b.score-a.score);
   if(sort==='total')d.sort((a,b)=>b.total-a.total);
   if(sort==='span')d.sort((a,b)=>b.span-a.span);
   return d;
-}
+
 
 function aidx(){return gf().findIndex(a=>a.id===actId);}
 
@@ -762,7 +788,7 @@ const SP_BLOCOS=[
 
 function spGetBlock(n){return SP_BLOCOS.find(b=>n>=b.start&&n<=b.end)||SP_BLOCOS[SP_BLOCOS.length-1];}
 
-let spMode='log', spCol='block', spChart=null;
+let spMode='log', spCol='block', spChart=null, activeBlock=null;
 
 function spVal(total){return spMode==='log'?Math.log(total+1):total;}
 
@@ -815,8 +841,6 @@ function buildSpine(){
         const di=els[0].index;
         if(di===undefined||di>=sorted.length){tt.style.display='none';return;}
         const a=sorted[di];
-        const n=parseInt(a.id.match(/\d+/)?.[0]||0);
-        const blk=spGetBlock(n);
         document.getElementById('stt-art').textContent=a.id;
         document.getElementById('stt-blk').textContent=blk.label+' · arts. '+blk.start+'–'+blk.end;
         document.getElementById('stt-cf').textContent=(a.cf_text||a.full||'').substring(0,60)+'…';
@@ -835,9 +859,7 @@ function buildSpine(){
         if(!els.length) return;
         const a=sorted[els[0].index];
         if(!a) return;
-        open_(a.id);
-        const hv=document.getElementById('hmView');
-        if(hv&&hv.style.display!=='none') toggleView();
+        open_(a.id);const hv=document.getElementById('hmView');if(hv&&hv.style.display!=='none')toggleView();
       }
     }
   });
@@ -874,6 +896,12 @@ function toggleSpine(){
   wrap.classList.toggle('collapsed');
   btn.textContent=wrap.classList.contains('collapsed')?'▼ expandir':'▲ recolher';
 }
+
+
+// ── BLOCK PANEL ──
+let blkChartInst=null;
+
+
 
 </script>
 </body>
