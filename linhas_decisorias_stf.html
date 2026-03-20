@@ -445,7 +445,6 @@ function kc(id){if(chts[id]){chts[id].destroy();delete chts[id];}}
 
 function gf(){
   let d=[...A];
-  if(window._blockIds){d=d.filter(a=>window._blockIds.has(a.id));}
   if(srch.length>1){const s=srch.toLowerCase();d=d.filter(a=>a.id.toLowerCase().includes(s)||(a.cf_text||a.full||'').toLowerCase().includes(s));}
   if(sort==='score') d.sort((a,b)=>b.score-a.score);
   else if(sort==='total') d.sort((a,b)=>b.total-a.total);
@@ -453,10 +452,6 @@ function gf(){
   else d.sort((a,b)=>{const na=parseInt(a.id.match(/\d+/)?.[0]||0),nb=parseInt(b.id.match(/\d+/)?.[0]||0);return na-nb;});
   return d;
 }
-  if(sort==='score')d.sort((a,b)=>b.score-a.score);
-  if(sort==='total')d.sort((a,b)=>b.total-a.total);
-  if(sort==='span')d.sort((a,b)=>b.span-a.span);
-  return d;
 
 
 function aidx(){return gf().findIndex(a=>a.id===actId);}
