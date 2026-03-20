@@ -268,21 +268,30 @@ body{font-family:var(--ff-b);background:var(--paper3);color:var(--ink);height:10
 .hm-sort-btn.active{background:var(--navy);color:var(--gold2);border-color:var(--navy)}
 .hm-filter{font-family:var(--ff-m);font-size:9px;padding:3px 8px;border:1px solid var(--border2);border-radius:4px;background:var(--paper);color:var(--ink);margin-left:auto}
 
-/* ── ESPINHA DORSAL ── */
-.spine-wrap{background:var(--navy);border-bottom:2px solid rgba(212,160,23,.25);overflow:hidden;transition:max-height .35s ease,padding .35s ease;max-height:180px}
+/* ── PLACAS TECTÔNICAS ── */
+.spine-wrap{background:#0d1829;border-bottom:2px solid rgba(212,160,23,.2);overflow:hidden;transition:max-height .35s ease,padding .35s ease;max-height:210px}
 .spine-wrap.collapsed{max-height:0;padding:0!important}
-.spine-inner{padding:.75rem 1.25rem .5rem}
-.spine-topbar{display:flex;align-items:center;gap:.75rem;margin-bottom:.5rem}
-.spine-title{font-family:var(--ff-m);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,240,232,.45)}
-.spine-toggles{display:flex;gap:4px;margin-left:auto}
-.spine-btn{font-family:var(--ff-m);font-size:8px;padding:2px 7px;background:rgba(255,255,255,.07);border:1px solid rgba(245,240,232,.15);color:rgba(245,240,232,.45);border-radius:3px;cursor:pointer;transition:all .12s}
-.spine-btn.active{background:rgba(212,160,23,.2);border-color:rgba(212,160,23,.4);color:#d4a017}
-.spine-btn:hover:not(.active){color:rgba(245,240,232,.8)}
-.spine-collapse{font-family:var(--ff-m);font-size:9px;color:rgba(245,240,232,.3);background:none;border:none;cursor:pointer;padding:0 0 0 .75rem;margin-left:.25rem;transition:color .12s}
-.spine-collapse:hover{color:rgba(245,240,232,.7)}
-.spine-chart-wrap{position:relative;height:90px;width:100%;cursor:crosshair}
-.spine-chart-wrap canvas{display:block;width:100%!important;height:90px!important}
-.spine-tooltip{position:absolute;background:rgba(10,16,32,.95);border:1px solid rgba(212,160,23,.3);border-radius:5px;padding:5px 8px;font-family:var(--ff-m);font-size:9px;color:rgba(245,240,232,.9);pointer-events:none;display:none;z-index:20;white-space:nowrap;max-width:220px}
+.spine-inner{padding:.75rem 1.25rem .6rem}
+.spine-topbar{display:flex;align-items:center;gap:.6rem;margin-bottom:.5rem;flex-wrap:wrap}
+.spine-title{font-family:var(--ff-m);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,240,232,.35)}
+.spine-toggles{display:flex;gap:3px;margin-left:auto}
+.spine-btn{font-family:var(--ff-m);font-size:8px;padding:2px 8px;background:rgba(255,255,255,.06);border:1px solid rgba(245,240,232,.12);color:rgba(245,240,232,.4);border-radius:3px;cursor:pointer;transition:all .12s;letter-spacing:.03em}
+.spine-btn.active{background:rgba(212,160,23,.18);border-color:rgba(212,160,23,.45);color:#d4a017}
+.spine-btn:hover:not(.active){color:rgba(245,240,232,.75);background:rgba(255,255,255,.1)}
+.spine-collapse{font-family:var(--ff-m);font-size:9px;color:rgba(245,240,232,.25);background:none;border:none;cursor:pointer;padding:0 0 0 .5rem;transition:color .12s}
+.spine-collapse:hover{color:rgba(245,240,232,.65)}
+.spine-chart-wrap{position:relative;height:100px;width:100%;cursor:crosshair}
+.spine-chart-wrap canvas{display:block;width:100%!important;height:100px!important}
+.spine-leg{display:flex;gap:0;margin-top:.5rem;flex-wrap:wrap}
+.spine-leg-item{display:flex;align-items:center;gap:4px;font-family:var(--ff-m);font-size:8px;color:rgba(245,240,232,.35);padding:2px 8px 2px 0;letter-spacing:.03em;white-space:nowrap}
+.spine-leg-dot{width:7px;height:7px;border-radius:1px;flex-shrink:0}
+.spine-tt{position:absolute;background:#0a1020;border:1px solid rgba(212,160,23,.3);border-radius:6px;padding:8px 11px;pointer-events:none;display:none;z-index:20;min-width:195px;max-width:250px}
+.spine-tt-art{font-size:12px;font-weight:500;color:#d4a017;margin-bottom:1px;font-family:var(--ff-m)}
+.spine-tt-blk{font-size:8px;color:rgba(245,240,232,.35);letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
+.spine-tt-cf{font-size:10px;color:rgba(245,240,232,.65);line-height:1.5;margin-bottom:5px}
+.spine-tt-row{display:flex;gap:12px}
+.spine-tt-stat .v{font-size:13px;font-weight:500;color:#f5f0e8;font-family:var(--ff-m)}
+.spine-tt-stat .l{font-size:8px;color:rgba(245,240,232,.3);letter-spacing:.04em}
 .spine-tooltip strong{color:#d4a017;display:block;font-size:10px;margin-bottom:1px}
 </style>
 </head>
@@ -302,19 +311,30 @@ body{font-family:var(--ff-b);background:var(--paper3);color:var(--ink);height:10
 <div class="spine-wrap" id="spineWrap">
   <div class="spine-inner">
     <div class="spine-topbar">
-      <span class="spine-title">Espinha dorsal da CF/88 · saliência decisória por artigo</span>
+      <span class="spine-title">Placas tectônicas da CF/88 · tensão decisória por artigo</span>
       <div class="spine-toggles">
         <button class="spine-btn active" data-spmode="log" onclick="setSpMode(this,'log')">log</button>
         <button class="spine-btn" data-spmode="linear" onclick="setSpMode(this,'linear')">linear</button>
-        <button class="spine-btn active" data-spcolor="instab" onclick="setSpColor(this,'instab')">instabilidade</button>
-        <button class="spine-btn" data-spcolor="volume" onclick="setSpColor(this,'volume')">volume</button>
+        <button class="spine-btn active" data-spcol="block" onclick="setSpCol(this,'block')">blocos</button>
+        <button class="spine-btn" data-spcol="instab" onclick="setSpCol(this,'instab')">instabilidade</button>
+        <button class="spine-btn" data-spcol="vol" onclick="setSpCol(this,'vol')">volume</button>
       </div>
       <button class="spine-collapse" onclick="toggleSpine()" id="spineColBtn">▲ recolher</button>
     </div>
     <div class="spine-chart-wrap">
       <canvas id="spineCanvas"></canvas>
-      <div class="spine-tooltip" id="spineTT"></div>
+      <div class="spine-tt" id="spineTT">
+        <div class="spine-tt-art" id="stt-art"></div>
+        <div class="spine-tt-blk" id="stt-blk"></div>
+        <div class="spine-tt-cf" id="stt-cf"></div>
+        <div class="spine-tt-row">
+          <div class="spine-tt-stat"><div class="v" id="stt-dec"></div><div class="l">decisões</div></div>
+          <div class="spine-tt-stat"><div class="v" id="stt-idi"></div><div class="l">IDI</div></div>
+          <div class="spine-tt-stat"><div class="v" id="stt-rev"></div><div class="l">reversões</div></div>
+        </div>
+      </div>
     </div>
+    <div class="spine-leg" id="spineLeg"></div>
   </div>
 </div>
 
@@ -725,18 +745,39 @@ document.querySelectorAll('.hm-sort-btn').forEach(b => b.addEventListener('click
 }));
 
 
-// ── ESPINHA DORSAL ──
-let spMode='log', spColor='instab', spChart=null;
+// ── PLACAS TECTÔNICAS ──
+const SP_BLOCOS=[
+  {id:'fund', label:'Princ. Fundamentais', start:1,   end:4,   light:'#4a6aaa'},
+  {id:'dir',  label:'Direitos e Garantias',start:5,   end:17,  light:'#c0392b'},
+  {id:'org',  label:'Organização do Estado',start:18, end:43,  light:'#27ae60'},
+  {id:'leg',  label:'Poder Legislativo',   start:44,  end:75,  light:'#8e44ad'},
+  {id:'exe',  label:'Poder Executivo',     start:76,  end:91,  light:'#e67e22'},
+  {id:'jud',  label:'Poder Judiciário',    start:92,  end:135, light:'#2980b9'},
+  {id:'def',  label:'Defesa do Estado',    start:136, end:144, light:'#795548'},
+  {id:'fin',  label:'Tributação e Finanças',start:145,end:169, light:'#1abc9c'},
+  {id:'eco',  label:'Ordem Econômica',     start:170, end:192, light:'#9b59b6'},
+  {id:'soc',  label:'Ordem Social',        start:193, end:232, light:'#e74c3c'},
+  {id:'disp', label:'Disposições Gerais',  start:233, end:250, light:'#607d8b'},
+];
 
-const SPINE_TIER_COLOR={high:'#c0392b',moderate:'#d4a017',stable:'#4a7fa8'};
+function spGetBlock(n){return SP_BLOCOS.find(b=>n>=b.start&&n<=b.end)||SP_BLOCOS[SP_BLOCOS.length-1];}
 
-function spVal(v){return spMode==='log'?Math.log(v+1):v;}
+let spMode='log', spCol='block', spChart=null;
 
-function spBarColor(d){
-  if(spColor==='instab') return SPINE_TIER_COLOR[d.tier]||'#4a7fa8';
-  const t=Math.log(d.total+1)/Math.log(1662);
-  const r=Math.round(180-t*130);const g=Math.round(200-t*150);const b=Math.round(230-t*140);
-  return `rgb(${r},${g},${b})`;
+function spVal(total){return spMode==='log'?Math.log(total+1):total;}
+
+function spBarCol(a){
+  if(spCol==='block'){
+    const n=parseInt(a.id.match(/\d+/)?.[0]||0);
+    return spGetBlock(n).light;
+  }
+  if(spCol==='instab'){
+    if(a.tier==='high') return '#c0392b';
+    if(a.tier==='moderate') return '#d4a017';
+    return '#4a7fa8';
+  }
+  const t=Math.log(a.total+1)/Math.log(1662);
+  return `rgb(${Math.round(60+t*140)},${Math.round(80+t*120)},${Math.round(180-t*100)})`;
 }
 
 function buildSpine(){
@@ -746,67 +787,87 @@ function buildSpine(){
     const nb=parseInt(b.id.match(/\d+/)?.[0]||0);
     return na-nb;
   });
-  const labels=sorted.map(d=>d.id);
-  const vals=sorted.map(d=>spVal(d.total));
-  const colors=sorted.map(d=>spBarColor(d));
+  const vals=sorted.map(a=>spVal(a.total));
+  const cols=sorted.map(a=>spBarCol(a));
+  const seismic=sorted.map((a,i)=>(a.reversals&&a.reversals.length>0)?{x:i,y:spVal(a.total)+.05}:null).filter(Boolean);
+
   if(spChart){spChart.destroy();spChart=null;}
   spChart=new Chart(document.getElementById('spineCanvas'),{
     type:'bar',
     data:{
-      labels,
-      datasets:[{
-        data:vals,backgroundColor:colors,borderWidth:0,
-        borderRadius:2,barPercentage:.9,categoryPercentage:.95
-      }]
+      labels:sorted.map(a=>a.id),
+      datasets:[
+        {type:'bar',data:vals,backgroundColor:cols,borderWidth:0,borderRadius:3,barPercentage:.88,categoryPercentage:.95},
+        {type:'scatter',data:seismic,backgroundColor:'#ff3333',borderColor:'#ff1111',borderWidth:1,pointRadius:5,pointStyle:'triangle',showLine:false}
+      ]
     },
     options:{
       responsive:false,maintainAspectRatio:false,
-      animation:{duration:300},
+      animation:{duration:220},
       plugins:{legend:{display:false},tooltip:{enabled:false}},
       scales:{
-        x:{ticks:{display:false},grid:{display:false},border:{display:false}},
-        y:{ticks:{display:false},grid:{display:false},border:{display:false},min:0}
+        x:{type:'category',ticks:{display:false},grid:{display:false},border:{display:false}},
+        y:{min:0,ticks:{display:false},grid:{display:false},border:{display:false}}
       },
       onHover:(evt,els)=>{
         const tt=document.getElementById('spineTT');
         if(!els.length){tt.style.display='none';return;}
-        const d=sorted[els[0].index];
-        const tierLabel={high:'alta instabilidade',moderate:'moderada',stable:'estável'};
-        tt.innerHTML=`<strong>${d.id}</strong>${d.cf_text?d.cf_text.substring(0,55)+'…':''}<br><span style="color:rgba(245,240,232,.5)">IDI ${d.score} · ${d.total.toLocaleString('pt-BR')} dec · ${tierLabel[d.tier]||d.tier}</span>`;
+        const di=els[0].index;
+        if(di===undefined||di>=sorted.length){tt.style.display='none';return;}
+        const a=sorted[di];
+        const n=parseInt(a.id.match(/\d+/)?.[0]||0);
+        const blk=spGetBlock(n);
+        document.getElementById('stt-art').textContent=a.id;
+        document.getElementById('stt-blk').textContent=blk.label+' · arts. '+blk.start+'–'+blk.end;
+        document.getElementById('stt-cf').textContent=(a.cf_text||a.full||'').substring(0,60)+'…';
+        document.getElementById('stt-dec').textContent=a.total.toLocaleString('pt-BR');
+        document.getElementById('stt-idi').textContent=a.score;
+        const nrev=a.reversals?a.reversals.length:0;
+        document.getElementById('stt-rev').textContent=nrev>0?'⚠ '+nrev:'—';
         const wrap=evt.chart.canvas.parentElement;
         const wRect=wrap.getBoundingClientRect();
-        let x=evt.clientX-wRect.left+8;
-        let y=evt.clientY-wRect.top-45;
-        if(x+230>wRect.width) x=evt.clientX-wRect.left-240;
-        if(y<0) y=5;
+        let x=evt.clientX-wRect.left+10,y=evt.clientY-wRect.top-65;
+        if(x+260>wRect.width) x=evt.clientX-wRect.left-265;
+        if(y<0) y=4;
         tt.style.left=x+'px';tt.style.top=y+'px';tt.style.display='block';
       },
       onClick:(evt,els)=>{
         if(!els.length) return;
-        const d=sorted[els[0].index];
-        open_(d.id);
-        // If heatmap is open, switch back to lines view
+        const a=sorted[els[0].index];
+        if(!a) return;
+        open_(a.id);
         const hv=document.getElementById('hmView');
         if(hv&&hv.style.display!=='none') toggleView();
       }
     }
   });
+
+  // Legend
+  const leg=document.getElementById('spineLeg');
+  if(spCol==='block'){
+    leg.innerHTML=SP_BLOCOS.map(b=>`<div class="spine-leg-item"><div class="spine-leg-dot" style="background:${b.light}"></div>${b.label}</div>`).join('');
+  } else {
+    leg.innerHTML=[
+      {c:'#c0392b',l:'Alta instabilidade'},
+      {c:'#d4a017',l:'Moderada'},
+      {c:'#4a7fa8',l:'Estável'},
+      {c:'#ff3333',l:'▲ sismo (reversão A→B→A)'},
+    ].map(x=>`<div class="spine-leg-item"><div class="spine-leg-dot" style="background:${x.c}"></div>${x.l}</div>`).join('');
+  }
 }
 
-function setSpMode(btn,mode){
-  spMode=mode;
+function setSpMode(btn,m){
+  spMode=m;
   document.querySelectorAll('[data-spmode]').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
   buildSpine();
 }
-
-function setSpColor(btn,color){
-  spColor=color;
-  document.querySelectorAll('[data-spcolor]').forEach(b=>b.classList.remove('active'));
+function setSpCol(btn,c){
+  spCol=c;
+  document.querySelectorAll('[data-spcol]').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
   buildSpine();
 }
-
 function toggleSpine(){
   const wrap=document.getElementById('spineWrap');
   const btn=document.getElementById('spineColBtn');
